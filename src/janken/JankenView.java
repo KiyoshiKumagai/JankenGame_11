@@ -23,15 +23,25 @@ public class JankenView extends Application {
  private Button cyokiButton;
  private Button paButton;
 
+ private JankenController jc;//じゃんけん制御オブジェクト変数
+
   @Override
  public void start(Stage stage) throws Exception {
    stage.setTitle("じゃんけんゲーム");
    stage.setWidth(450);
    stage.setHeight(300);
 
-  myLayout(stage);
+   myLayout(stage);
 
    stage.show();
+
+   //じゃんけん制御クラスのインスタンス
+   jc = new JankenController(cpuLabel, humanLabel, resultLabel,scoreLabel);
+
+   //イベント処理
+   guButton.setOnAction(event -> jc.putOutRockHand());
+   cyokiButton.setOnAction(evet -> jc.putOutScissorsHand());
+   paButton.setOnAction(evet -> jc.putOutPaperHand());
  }
 
  //画面に表示するGUI部品の基本的な設定
